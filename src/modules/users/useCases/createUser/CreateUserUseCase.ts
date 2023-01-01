@@ -25,19 +25,12 @@ export class CreateUserUseCase {
 
     const hashPassword = await hash(password, 10)
 
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
         username,
         password: hashPassword,
         bio,
       },
-      select: {
-        id: true,
-        username: true,
-        bio: true,
-      },
     })
-
-    return user
   }
 }
