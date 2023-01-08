@@ -15,6 +15,7 @@ model User {
   username String  @unique
   password String
   bio      String?
+  avatar   String?
 
   @@map("users")
 }
