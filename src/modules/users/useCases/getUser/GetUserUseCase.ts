@@ -1,7 +1,8 @@
 import { prisma } from '../../../../database/prismaClient'
 import { AppError } from '../../../../errors/AppError'
+import { getAvatarURL } from '../../../../utils/file'
 
-export class GetProfileUseCase {
+export class GetUserUseCase {
   async execute(user_id: string) {
     const user = await prisma.user.findFirst({
       where: {
@@ -11,6 +12,7 @@ export class GetProfileUseCase {
         id: true,
         username: true,
         bio: true,
+        avatar: true,
       },
     })
 
@@ -18,6 +20,9 @@ export class GetProfileUseCase {
       throw new AppError('Usuário não encontrado')
     }
 
-    return user
+    return {
+      ...user,
+      avatar: getAvatarURL(user.avatar),
+    }
   }
 }
