@@ -16,6 +16,18 @@ model User {
   password String
   bio      String?
   avatar   String?
+  Link     Link[]
 
   @@map("users")
+}
+
+model Link {
+  id    String @id @default(uuid())
+  label String
+  url   String
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@map("links")
 }
