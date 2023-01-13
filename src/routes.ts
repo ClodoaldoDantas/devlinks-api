@@ -7,6 +7,7 @@ import { UpdateUserAvatarController } from './modules/users/useCases/updateUserA
 import { UpdateUserBioController } from './modules/users/useCases/updateUserBio/UpdateUserBioController'
 import { CreateLinkController } from './modules/links/useCases/createLink/CreateLinkController'
 import { GetLinksController } from './modules/links/useCases/getLinks/GetLinksController'
+import { DeleteLinkController } from './modules/links/useCases/deleteLink/DeleteLinkController'
 
 import multer from 'multer'
 import uploadConfig from './config/upload'
@@ -19,6 +20,7 @@ const updateUserAvatarController = new UpdateUserAvatarController()
 const updateUserBioController = new UpdateUserBioController()
 const createLinkController = new CreateLinkController()
 const getLinksController = new GetLinksController()
+const deleteLinkController = new DeleteLinkController()
 
 const upload = multer(uploadConfig)
 
@@ -39,5 +41,6 @@ routes.post('/session', authenticateUserController.handle)
 /* links */
 routes.post('/links', ensureAuthenticate, createLinkController.handle)
 routes.get('/links', ensureAuthenticate, getLinksController.handle)
+routes.delete('/links/:id', ensureAuthenticate, deleteLinkController.handle)
 
 export { routes }
