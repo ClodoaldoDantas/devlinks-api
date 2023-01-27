@@ -2,7 +2,7 @@ import { prisma } from '../../../../database/prismaClient'
 import { AppError } from '../../../../errors/AppError'
 import { getAvatarURL } from '../../../../utils/file'
 
-export class GetUserUseCase {
+export class GetProfileUseCase {
   async execute(user_id: string) {
     const user = await prisma.user.findFirst({
       where: {
