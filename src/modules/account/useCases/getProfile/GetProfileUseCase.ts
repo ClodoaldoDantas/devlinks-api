@@ -2,7 +2,7 @@ import { prisma } from '../../../../database/prismaClient'
 import { AppError } from '../../../../errors/AppError'
 import { getAvatarURL } from '../../../../utils/file'
 
-export class GetUserUseCase {
+export class GetProfileUseCase {
   async execute(user_id: string) {
     const user = await prisma.user.findFirst({
       where: {
@@ -13,13 +13,6 @@ export class GetUserUseCase {
         username: true,
         bio: true,
         avatar: true,
-        links: {
-          select: {
-            id: true,
-            url: true,
-            label: true,
-          },
-        },
       },
     })
 
