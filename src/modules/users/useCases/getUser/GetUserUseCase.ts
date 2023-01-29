@@ -3,10 +3,10 @@ import { AppError } from '../../../../errors/AppError'
 import { getAvatarURL } from '../../../../utils/file'
 
 export class GetUserUseCase {
-  async execute(user_id: string) {
+  async execute(username: string) {
     const user = await prisma.user.findFirst({
       where: {
-        id: user_id,
+        username,
       },
       select: {
         id: true,

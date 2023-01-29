@@ -29,7 +29,7 @@ const upload = multer(uploadConfig)
 
 /* users */
 routes.post('/users', createUserController.handle)
-routes.get('/users/:id', getUserController.handle)
+routes.get('/users/:username', getUserController.handle)
 
 /* session */
 routes.get('/me', ensureAuthenticate, getProfileController.handle)
